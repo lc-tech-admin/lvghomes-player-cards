@@ -2,8 +2,9 @@ import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { withOverall, tierLabel } from '../overall';
 import { useCountUp } from '../lib/useCountUp';
+import { fmtStat } from '../lib/formatters';
 import { PlayerCard } from '../components/PlayerCard';
-import { StatBars } from '../components/StatBars';
+import { STAT_META } from '../data';
 import type { Player } from '../types';
 
 interface Props {
@@ -11,12 +12,12 @@ interface Props {
   ams: Player[];
 }
 
-const ovrBigColor: Record<string, string> = {
-  diamond: '#3BBFA0',
-  gold: '#3BBFA0',
-  silver: '#3BBFA0',
-  bronze: '#3BBFA0',
-};
+function pctColor(pct: number): string {
+  if (pct >= 100) return '#1B6F5C';
+  if (pct >= 75)  return '#1F507E';
+  if (pct >= 50)  return '#8B6200';
+  return '#8B3218';
+}
 
 export function Detail({ vps, ams }: Props) {
   const navigate = useNavigate();
@@ -56,32 +57,38 @@ export function Detail({ vps, ams }: Props) {
 
       <div className="stage">
         <div className="card-wrap">
-          <PlayerCard player={player} />
+          <PlayerCard player={player} compact />
         </div>
 
         <div className="detail">
-          <div className="meta-row">
-            <div>
-              <h2>
-                <span className="role-i">{tierLabel(player.tier)} · OVERALL</span>
-                {player.overall}
-              </h2>
-            </div>
-            <div className="ovr-big" style={{ color: ovrBigColor[player.tier] }}>
-              <small>weighted score</small>
+          <div className="score-hero">
+            <span className="role-i">{tierLabel(player.tier)} · OVERALL</span>
+            <div className="score-num">
               {animOvr}
-              <span style={{ color: 'var(--text-3)', fontStyle: 'normal', fontSize: 24 }}> / 99</span>
+              <span className="score-denom"> / 99</span>
             </div>
+            <div className="score-label">weighted score · YTD 2026</div>
           </div>
 
-          <h3 style={{
-            fontFamily: 'var(--font-ui)', fontSize: 11, letterSpacing: '0.24em',
-            color: 'var(--text-3)', textTransform: 'uppercase', fontWeight: 600,
-          }}>
-            Stat breakdown — YTD vs target
-          </h3>
-
-          <StatBars player={player} tier={player.tier} />
+          <div className="kpi-grid">
+            {Object.entries(player.breakdown).map(([k, b]) => {
+              const meta = STAT_META[k] || { label: k, kind: 'pct' as const };
+              const pct = Math.round(b.ratio * 100);
+              const color = pctColor(pct);
+              return (
+                <div className="kpi-bubble" key={k}>
+                  <div className="kpi-lbl">{meta.label}</div>
+                  <div className="kpi-val">{fmtStat(b.value, meta.kind)}</div>
+                  <div className="kpi-foot">
+                    <div className="kpi-track">
+                      <div className="kpi-fill" style={{ width: `${Math.min(pct, 100)}%`, background: color }} />
+                    </div>
+                    <span className="kpi-pct" style={{ color }}>{pct}%</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
           <p className="legend">
             Overall is a weighted score (0–100) based on each YTD metric vs its target from the Google Sheet.

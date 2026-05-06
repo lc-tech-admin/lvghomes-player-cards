@@ -8,6 +8,7 @@ import type { PlayerWithOverall } from '../types';
 interface Props {
   player: PlayerWithOverall;
   animationsOn?: boolean;
+  compact?: boolean;
 }
 
 function clearPhoto(playerId: string) {
@@ -24,7 +25,7 @@ function clearPhoto(playerId: string) {
   });
 }
 
-export function PlayerCard({ player, animationsOn = true }: Props) {
+export function PlayerCard({ player, animationsOn = true, compact = false }: Props) {
   const rawOvr = useCountUp(player.overall, 1100, [player.id]);
   const animatedOvr = animationsOn ? Math.round(rawOvr) : player.overall;
   const roleAbbr = player.role.includes('Vice') ? 'VP' : 'AM';
@@ -34,7 +35,7 @@ export function PlayerCard({ player, animationsOn = true }: Props) {
     : ['appts', 'icp5', 'arip', 'dealReviewLM', 'dealReviewLLM', 'closedPct'];
 
   return (
-    <div className={`player-card tier-${player.tier} card-in`}>
+    <div className={`player-card tier-${player.tier} card-in${compact ? ' compact' : ''}`}>
       <div className="lattice" />
       <div className="glow" />
       <div className="card-frame" />
@@ -76,37 +77,41 @@ export function PlayerCard({ player, animationsOn = true }: Props) {
         <div className="role">{player.role}</div>
       </div>
 
-      <div className="card-stats">
-        {cardStatKeys.map(k => {
-          const meta = STAT_META[k];
-          if (!meta) return null;
-          const value = (player.stats as Record<string, number>)[k] ?? 0;
-          return (
-            <div className="stat-row" key={k}>
-              <div className="stat-label">
-                <StatIcon name={meta.icon} className="ic" />
-                {meta.label}
-              </div>
-              <div className="stat-value">{fmtStat(value, meta.kind)}</div>
-            </div>
-          );
-        })}
-      </div>
+      {!compact && (
+        <>
+          <div className="card-stats">
+            {cardStatKeys.map(k => {
+              const meta = STAT_META[k];
+              if (!meta) return null;
+              const value = (player.stats as Record<string, number>)[k] ?? 0;
+              return (
+                <div className="stat-row" key={k}>
+                  <div className="stat-label">
+                    <StatIcon name={meta.icon} className="ic" />
+                    {meta.label}
+                  </div>
+                  <div className="stat-value">{fmtStat(value, meta.kind)}</div>
+                </div>
+              );
+            })}
+          </div>
 
-      <div className="card-foot">
-        <div className="cell">
-          <div className="lbl">Closed (Attr)</div>
-          <div className="val">{fmtStat(player.stats.closedRevAttr ?? 0, 'money')}</div>
-        </div>
-        <div className="cell">
-          <div className="lbl">Closed (Q)</div>
-          <div className="val">{fmtStat(player.stats.closedRevQtr ?? 0, 'money')}</div>
-        </div>
-        <div className="cell">
-          <div className="lbl">Pipeline</div>
-          <div className="val">{fmtStat(player.stats.pipeline ?? 0, 'money')}</div>
-        </div>
-      </div>
+          <div className="card-foot">
+            <div className="cell">
+              <div className="lbl">Closed (Attr)</div>
+              <div className="val">{fmtStat(player.stats.closedRevAttr ?? 0, 'money')}</div>
+            </div>
+            <div className="cell">
+              <div className="lbl">Closed (Q)</div>
+              <div className="val">{fmtStat(player.stats.closedRevQtr ?? 0, 'money')}</div>
+            </div>
+            <div className="cell">
+              <div className="lbl">Pipeline</div>
+              <div className="val">{fmtStat(player.stats.pipeline ?? 0, 'money')}</div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
