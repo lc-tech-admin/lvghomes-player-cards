@@ -42,7 +42,9 @@ export function Roster({ vps, ams }: Props) {
             onClick={() => navigate(`/player/${role}/${p.id}`)}
           >
             <div className="tier-stripe" />
-            <div className="ovr">{p.overall}</div>
+            <div className="ovr" style={p.overall === 0 ? { color: 'var(--text-3)', fontSize: 18 } : undefined}>
+              {p.overall > 0 ? p.overall : '—'}
+            </div>
             <div className="photo-mini">
               <image-slot
                 id={`shot-${p.id}`}
@@ -51,7 +53,9 @@ export function Roster({ vps, ams }: Props) {
               />
             </div>
             <div className="name">{p.name}</div>
-            <div className="role-mini">{tierLabel(p.tier)} · {isVP ? 'VP' : 'AM'}</div>
+            <div className="role-mini">
+              {p.overall > 0 ? `${tierLabel(p.tier)} · ` : ''}{isVP ? 'VP' : 'AM'}
+            </div>
           </button>
         ))}
       </div>

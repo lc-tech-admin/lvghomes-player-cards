@@ -68,7 +68,7 @@ export function PlayerCard({ player, animationsOn = true, compact = false }: Pro
       </div>
 
       <div className="overall-medallion" aria-label={`Overall ${player.overall}`}>
-        <div className="ovr-num">{animatedOvr}</div>
+        <div className="ovr-num">{player.overall > 0 ? animatedOvr : '—'}</div>
         <div className="ovr-lbl">OVERALL</div>
       </div>
 

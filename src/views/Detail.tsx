@@ -69,10 +69,17 @@ export function Detail({ vps, ams }: Props) {
           <div className="score-hero">
             <div className="score-hero-ovr">
               <span className="role-i">{tierLabel(player.tier)} · OVERALL</span>
-              <div className="score-num">
-                {animOvr}
-                <span className="score-denom"> / 99</span>
-              </div>
+              {player.overall > 0 ? (
+                <div className="score-num">
+                  {animOvr}
+                  <span className="score-denom"> / 99</span>
+                </div>
+              ) : (
+                <div style={{ fontSize: 14, color: 'var(--text-3)', marginTop: 8, lineHeight: 1.5 }}>
+                  No targets loaded.<br />
+                  <strong style={{ color: 'var(--text-2)' }}>Update your Apps Script and click Refresh.</strong>
+                </div>
+              )}
               <div className="score-label">weighted score · YTD 2026</div>
             </div>
             <div className="score-hero-stats">
