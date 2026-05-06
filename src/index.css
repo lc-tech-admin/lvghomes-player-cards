@@ -525,7 +525,8 @@ button{font-family:inherit;color:inherit}
 .player-card.compact{height:490px}
 
 /* Score hero */
-.score-hero{border-bottom:1px solid var(--line);padding-bottom:16px}
+.score-hero{display:flex;align-items:center;gap:20px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.score-hero-ovr{flex-shrink:0}
 .score-hero .role-i{display:block;font-size:11px;letter-spacing:0.24em;color:#3BBFA0;
   text-transform:uppercase;font-family:var(--font-ui);font-weight:600;margin-bottom:6px}
 .score-hero .score-num{font-family:var(--font-display);font-style:italic;font-weight:600;
@@ -533,6 +534,13 @@ button{font-family:inherit;color:inherit}
 .score-hero .score-denom{font-size:22px;color:var(--text-3);font-style:normal;letter-spacing:0}
 .score-hero .score-label{font-family:var(--font-ui);font-size:10px;letter-spacing:0.28em;
   color:var(--text-3);text-transform:uppercase;margin-top:5px}
+.score-hero-stats{display:flex;flex:1;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.score-hero-stat{flex:1;padding:12px 14px;background:var(--bg);border-right:1px solid var(--line);text-align:center}
+.score-hero-stat:last-child{border-right:0}
+.sh-lbl{font-family:var(--font-ui);font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--text-3);font-weight:700;margin-bottom:5px;white-space:nowrap}
+.sh-val{font-family:var(--font-mono);font-size:18px;font-weight:600;color:var(--text);
+  font-variant-numeric:tabular-nums}
 
 /* KPI bubble grid */
 .kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}

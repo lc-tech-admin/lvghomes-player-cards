@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { withOverall, tierLabel } from '../overall';
 import { useCountUp } from '../lib/useCountUp';
-import { fmtStat } from '../lib/formatters';
+import { fmtStat, fmtMoneyShort } from '../lib/formatters';
 import { PlayerCard } from '../components/PlayerCard';
 import { STAT_META } from '../data';
 import type { Player } from '../types';
@@ -12,8 +12,8 @@ interface Props {
   ams: Player[];
 }
 
-const VP_DISPLAY = ['appts','contracts','icp5','arip','dealReview','closedPct','closedRevAttr','closedRevQtr','pipeline'];
-const AM_DISPLAY = ['appts','icp5','arip','dealReviewLM','dealReviewLLM','closedPct','closedRevAttr','closedRevQtr','pipeline'];
+const VP_DISPLAY = ['appts','contracts','icp5','arip','dealReview','closedPct'];
+const AM_DISPLAY = ['appts','icp5','arip','dealReviewLM','dealReviewLLM','closedPct'];
 
 function pctColor(pct: number): string {
   if (pct >= 100) return '#1B6F5C';
@@ -67,12 +67,26 @@ export function Detail({ vps, ams }: Props) {
 
         <div className="detail">
           <div className="score-hero">
-            <span className="role-i">{tierLabel(player.tier)} · OVERALL</span>
-            <div className="score-num">
-              {animOvr}
-              <span className="score-denom"> / 99</span>
+            <div className="score-hero-ovr">
+              <span className="role-i">{tierLabel(player.tier)} · OVERALL</span>
+              <div className="score-num">
+                {animOvr}
+                <span className="score-denom"> / 99</span>
+              </div>
+              <div className="score-label">weighted score · YTD 2026</div>
             </div>
-            <div className="score-label">weighted score · YTD 2026</div>
+            <div className="score-hero-stats">
+              {[
+                { label: 'Closed (Attr)', value: player.stats.closedRevAttr ?? 0 },
+                { label: 'Closed (Qtr)',  value: player.stats.closedRevQtr  ?? 0 },
+                { label: 'Pipeline',      value: player.stats.pipeline       ?? 0 },
+              ].map(({ label, value }) => (
+                <div className="score-hero-stat" key={label}>
+                  <div className="sh-lbl">{label}</div>
+                  <div className="sh-val">{fmtMoneyShort(value)}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="kpi-grid">
