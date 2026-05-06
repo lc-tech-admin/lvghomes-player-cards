@@ -84,7 +84,10 @@ export function Detail({ vps, ams }: Props) {
           <StatBars player={player} tier={player.tier} />
 
           <p className="legend">
-            Overall is calculated by weighting each YTD metric against its target (ARIP 23%, Deal Review LM 21.6%, Closed Rev/Qtr 20%, Pipeline 15%, Closed Rev/Attr &amp; Closed % 7.5%, Deal Review LLM 5.4%) then normalizing to 0–99. Bars cap visually at 100% of target; each player can over-perform.
+            {role === 'vp'
+              ? 'Overall is weighted by: ARIP 30%, Deal Review 30%, Closed Rev/Qtr 25%, Closed % 5%, Closed Rev/Attr 5%, Pipeline 5% — each measured YTD against target.'
+              : 'Overall is weighted by: ARIP 23%, Deal Review LM 21.6%, Closed Rev/Qtr 20%, Pipeline 15%, Closed Rev/Attr & Closed % 7.5%, Deal Review LLM 5.4% — each measured YTD against target.'}
+            {' '}Bars cap at target; players can over-perform up to 125%.
           </p>
         </div>
       </div>

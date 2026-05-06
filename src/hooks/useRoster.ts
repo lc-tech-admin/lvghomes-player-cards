@@ -49,17 +49,29 @@ export function useRoster() {
 
       try {
         const res = await fetch(SHEET_URL as string, { cache: 'no-store' });
-        const json = await res.json() as { vps: Record<string, unknown>[]; ams: Record<string, unknown>[]; quarter?: string; updatedAt?: string };
+        const json = await res.json() as { vps?: Record<string, unknown>[]; ams?: Record<string, unknown>[]; quarter?: string; updatedAt?: string };
+
+        // Guard against malformed or empty responses overwriting static data
+        if (!Array.isArray(json.vps) && !Array.isArray(json.ams)) {
+          throw new Error('Unexpected response format from Apps Script');
+        }
+
         const normalized: RosterData = {
           updatedAt: json.updatedAt || new Date().toISOString(),
           quarter: json.quarter || 'Q1 2026',
           vps: (json.vps || []).map(p => normalizePlayer(p, 'vp')),
           ams: (json.ams || []).map(p => normalizePlayer(p, 'am')),
         };
+
+        if (normalized.vps.length === 0 && normalized.ams.length === 0) {
+          throw new Error('Apps Script returned 0 players — check column indices');
+        }
+
         setData(normalized);
         localStorage.setItem(CACHE_KEY, JSON.stringify({ data: normalized, timestamp: Date.now() }));
-      } catch {
-        setError('Could not load live data — showing cached stats.');
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Could not load live data';
+        setError(msg);
         // Keep static data already in state
       }
 

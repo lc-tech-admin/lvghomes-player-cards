@@ -1,5 +1,9 @@
-import { WEIGHTS } from './data';
+import { VP_WEIGHTS, AM_WEIGHTS } from './data';
 import type { Player, PlayerWithOverall, Tier, BreakdownEntry } from './types';
+
+function getWeights(player: Player) {
+  return player.role === 'Vice President' ? VP_WEIGHTS : AM_WEIGHTS;
+}
 
 function ratio(value: number, target: number): number {
   if (!target || target <= 0) return 0;
@@ -7,6 +11,7 @@ function ratio(value: number, target: number): number {
 }
 
 export function compute(player: Player): { overall: number; breakdown: Record<string, BreakdownEntry> } {
+  const WEIGHTS = getWeights(player);
   const keys = (Object.keys(player.stats) as (keyof typeof player.stats)[]).filter(k => WEIGHTS[k]);
   let totalWeight = 0;
   let earned = 0;

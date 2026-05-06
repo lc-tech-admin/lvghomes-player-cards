@@ -6,9 +6,9 @@ export const STATIC_VPS: Player[] = [
     name: 'Sam Dogbe',
     role: 'Vice President',
     stats: {
-      appts: 281, contracts: 109, icp5: 0.4804, arip: 0.1352,
-      dealReview: 0.6364, closedPct: 0.0107,
-      closedRevAttr: 182845.30, closedRevQtr: 571379.50, pipeline: 1561915.87,
+      appts: 421, contracts: 166, icp5: 0.4489, arip: 0.1259,
+      dealReview: 0.6333, closedPct: 0.0166,
+      closedRevAttr: 372392.23, closedRevQtr: 680168.74, pipeline: 1273451.74,
     },
   },
   {
@@ -16,9 +16,9 @@ export const STATIC_VPS: Player[] = [
     name: 'Joey Szal',
     role: 'Vice President',
     stats: {
-      appts: 363, contracts: 118, icp5: 0.3554, arip: 0.0882,
-      dealReview: 0.5161, closedPct: 0.0083,
-      closedRevAttr: 89980.51, closedRevQtr: 338809.41, pipeline: 524000.00,
+      appts: 528, contracts: 169, icp5: 0.3466, arip: 0.0814,
+      dealReview: 0.5833, closedPct: 0.0095,
+      closedRevAttr: 224122.13, closedRevQtr: 401691.41, pipeline: 433447.50,
     },
   },
   {
@@ -26,9 +26,9 @@ export const STATIC_VPS: Player[] = [
     name: "Ray O'Donnell",
     role: 'Vice President',
     stats: {
-      appts: 214, contracts: 94, icp5: 0.2757, arip: 0.0561,
-      dealReview: 0.8333, closedPct: 0.0047,
-      closedRevAttr: 9850.00, closedRevQtr: 178500.10, pipeline: 408090.00,
+      appts: 373, contracts: 161, icp5: 0.2574, arip: 0.0590,
+      dealReview: 0.6800, closedPct: 0.0080,
+      closedRevAttr: 40999.29, closedRevQtr: 236224.64, pipeline: 490000.00,
     },
   },
 ];
@@ -39,9 +39,9 @@ export const STATIC_AMS: Player[] = [
     name: 'Bhavin Shroff',
     role: 'Acquisition Manager',
     stats: {
-      appts: 312, icp5: 0.7030, arip: 0.0891,
-      dealReviewLM: 0.5429, dealReviewLLM: 0.4615, closedPct: 0.0198,
-      closedRevAttr: 102154.94, closedRevQtr: 513870.32, pipeline: 746202.82,
+      appts: 313, icp5: 0.7059, arip: 0.0882,
+      dealReviewLM: 0.5429, dealReviewLLM: 0.4615, closedPct: 0.0196,
+      closedRevAttr: 102154.94, closedRevQtr: 513870.32, pipeline: 766202.82,
     },
   },
   {
@@ -49,9 +49,9 @@ export const STATIC_AMS: Player[] = [
     name: 'Erick Bonilla',
     role: 'Acquisition Manager',
     stats: {
-      appts: 338, icp5: 0.3296, arip: 0.0615,
-      dealReviewLM: 0.50, dealReviewLLM: 0.40, closedPct: 0.0223,
-      closedRevAttr: 205134.44, closedRevQtr: 485891.41, pipeline: 558163.94,
+      appts: 342, icp5: 0.3297, arip: 0.0659,
+      dealReviewLM: 0.50, dealReviewLLM: 0.40, closedPct: 0.0220,
+      closedRevAttr: 205134.44, closedRevQtr: 485891.41, pipeline: 578163.94,
     },
   },
   {
@@ -59,39 +59,9 @@ export const STATIC_AMS: Player[] = [
     name: 'Nick Miller',
     role: 'Acquisition Manager',
     stats: {
-      appts: 380, icp5: 0.4162, arip: 0.0865,
+      appts: 381, icp5: 0.4140, arip: 0.0860,
       dealReviewLM: 0.7436, dealReviewLLM: 0.1429, closedPct: 0.0108,
-      closedRevAttr: 31149.29, closedRevQtr: 369501.46, pipeline: 1236322.50,
-    },
-  },
-  {
-    id: 'oscar',
-    name: 'Oscar Malik',
-    role: 'Acquisition Manager',
-    stats: {
-      appts: 264, icp5: 0.4521, arip: 0.0712,
-      dealReviewLM: 0.5882, dealReviewLLM: 0.3500, closedPct: 0.0152,
-      closedRevAttr: 64200.00, closedRevQtr: 298400.00, pipeline: 612000.00,
-    },
-  },
-  {
-    id: 'irish',
-    name: 'Irish Manoguid',
-    role: 'Acquisition Manager',
-    stats: {
-      appts: 295, icp5: 0.5104, arip: 0.0950,
-      dealReviewLM: 0.6111, dealReviewLLM: 0.4200, closedPct: 0.0203,
-      closedRevAttr: 88450.00, closedRevQtr: 421300.00, pipeline: 854000.00,
-    },
-  },
-  {
-    id: 'francis',
-    name: 'Francis Qhobosheane',
-    role: 'Acquisition Manager',
-    stats: {
-      appts: 198, icp5: 0.3232, arip: 0.0455,
-      dealReviewLM: 0.4500, dealReviewLLM: 0.2800, closedPct: 0.0091,
-      closedRevAttr: 22400.00, closedRevQtr: 142100.00, pipeline: 318000.00,
+      closedRevAttr: 31149.29, closedRevQtr: 369501.46, pipeline: 1148672.50,
     },
   },
   {
@@ -99,19 +69,19 @@ export const STATIC_AMS: Player[] = [
     name: 'Rodney Malloy',
     role: 'Acquisition Manager',
     stats: {
-      appts: 110, icp5: 0.4066, arip: 0.0,
+      appts: 116, icp5: 0.4043, arip: 0.0,
       dealReviewLM: 0.0, dealReviewLLM: 0.0, closedPct: 0.0,
-      closedRevAttr: 0, closedRevQtr: 0, pipeline: 0,
+      closedRevAttr: 0, closedRevQtr: 0, pipeline: 50000,
     },
   },
   {
-    id: 'billy',
-    name: 'Billy Liapis',
+    id: 'francis',
+    name: 'Francis Qhobosheane',
     role: 'Acquisition Manager',
     stats: {
-      appts: 247, icp5: 0.4830, arip: 0.0805,
-      dealReviewLM: 0.5750, dealReviewLLM: 0.4000, closedPct: 0.0162,
-      closedRevAttr: 51200.00, closedRevQtr: 312800.00, pipeline: 698000.00,
+      appts: 146, icp5: 0.2184, arip: 0.0460,
+      dealReviewLM: 0.3333, dealReviewLLM: 0.0, closedPct: 0.0115,
+      closedRevAttr: 30200, closedRevQtr: 30200, pipeline: 45000,
     },
   },
   {
@@ -119,47 +89,55 @@ export const STATIC_AMS: Player[] = [
     name: 'Luke Nam',
     role: 'Acquisition Manager',
     stats: {
-      appts: 321, icp5: 0.5530, arip: 0.1105,
-      dealReviewLM: 0.6500, dealReviewLLM: 0.4800, closedPct: 0.0249,
-      closedRevAttr: 142800.00, closedRevQtr: 488200.00, pipeline: 921000.00,
+      appts: 0, icp5: 0.0, arip: 0.0,
+      dealReviewLM: 1.0, dealReviewLLM: 0.0, closedPct: 0.0,
+      closedRevAttr: 0, closedRevQtr: 0, pipeline: 50000,
     },
   },
   {
-    id: 'brian',
-    name: 'Brian Chacon',
+    id: 'billy',
+    name: 'Billy Liapis',
     role: 'Acquisition Manager',
     stats: {
-      appts: 178, icp5: 0.3596, arip: 0.0521,
-      dealReviewLM: 0.4800, dealReviewLLM: 0.3100, closedPct: 0.0112,
-      closedRevAttr: 28600.00, closedRevQtr: 184900.00, pipeline: 392000.00,
+      appts: 0, icp5: 0.0, arip: 0.0,
+      dealReviewLM: 0.0, dealReviewLLM: 1.0, closedPct: 0.0,
+      closedRevAttr: 0, closedRevQtr: 0, pipeline: 85000,
     },
   },
 ];
 
-export const WEIGHTS: Record<string, { weight: number; target: number }> = {
-  icp5:          { weight: 12,   target: 0.50 },
+export const VP_WEIGHTS: Record<string, { weight: number; target: number }> = {
+  arip:          { weight: 30,   target: 0.10 },
+  dealReview:    { weight: 30,   target: 0.50 },
+  closedPct:     { weight: 5,    target: 0.015 },
+  closedRevAttr: { weight: 5,    target: 400000 },
+  closedRevQtr:  { weight: 25,   target: 600000 },
+  pipeline:      { weight: 5,    target: 1500000 },
+};
+
+export const AM_WEIGHTS: Record<string, { weight: number; target: number }> = {
   arip:          { weight: 23,   target: 0.075 },
-  dealReview:    { weight: 21.6, target: 0.50 },
   dealReviewLM:  { weight: 21.6, target: 0.50 },
   dealReviewLLM: { weight: 5.4,  target: 0.50 },
   closedPct:     { weight: 7.5,  target: 0.015 },
   closedRevAttr: { weight: 7.5,  target: 35000 },
   closedRevQtr:  { weight: 20,   target: 350000 },
   pipeline:      { weight: 15,   target: 800000 },
-  appts:         { weight: 5,    target: 360 },
-  contracts:     { weight: 5,    target: 60 },
 };
 
+// backward compat alias
+export const WEIGHTS = AM_WEIGHTS;
+
 export const STAT_META: Record<string, StatMeta> = {
-  appts:         { label: 'APPTs Attended',           kind: 'int',   icon: 'calendar' },
-  contracts:     { label: 'Contracts Sent',           kind: 'int',   icon: 'doc' },
-  icp5:          { label: '5+ ICP',                   kind: 'pct',   icon: 'users' },
-  arip:          { label: 'ARIP',                     kind: 'pct',   icon: 'trend' },
-  dealReview:    { label: 'Deal Review',              kind: 'pct',   icon: 'review' },
-  dealReviewLM:  { label: 'Deal Review LM',           kind: 'pct',   icon: 'review' },
-  dealReviewLLM: { label: 'Deal Review LLM',          kind: 'pct',   icon: 'review' },
-  closedPct:     { label: 'Closed',                   kind: 'pct',   icon: 'check' },
-  closedRevAttr: { label: 'Closed Rev (Attributed)',  kind: 'money', icon: 'money' },
-  closedRevQtr:  { label: 'Closed Rev (Quarter)',     kind: 'money', icon: 'money' },
-  pipeline:      { label: 'Projected Pipeline',       kind: 'money', icon: 'pipe' },
+  appts:         { label: 'APPTs Attended',            kind: 'int',   icon: 'calendar' },
+  contracts:     { label: 'Contracts Sent',            kind: 'int',   icon: 'doc' },
+  icp5:          { label: '5+ ICP',                    kind: 'pct',   icon: 'users' },
+  arip:          { label: 'ARIP',                      kind: 'pct',   icon: 'trend' },
+  dealReview:    { label: 'Deal Review',               kind: 'pct',   icon: 'review' },
+  dealReviewLM:  { label: 'Deal Review LM',            kind: 'pct',   icon: 'review' },
+  dealReviewLLM: { label: 'Deal Review LLM',           kind: 'pct',   icon: 'review' },
+  closedPct:     { label: 'Closed',                    kind: 'pct',   icon: 'check' },
+  closedRevAttr: { label: 'Closed Rev (Attributed)',   kind: 'money', icon: 'money' },
+  closedRevQtr:  { label: 'Closed Rev (Quarter)',      kind: 'money', icon: 'money' },
+  pipeline:      { label: 'Projected Pipeline',        kind: 'money', icon: 'pipe' },
 };
