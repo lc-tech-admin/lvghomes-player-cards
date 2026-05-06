@@ -84,7 +84,7 @@ function AppInner() {
 
 export function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/lvghomes-player-cards">
       <AppInner />
     </BrowserRouter>
   );
