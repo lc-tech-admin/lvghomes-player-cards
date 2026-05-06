@@ -295,7 +295,7 @@ button{font-family:inherit;color:inherit}
 .player-card{
   --c1:#1B3656; --c2:#06101F; --edge:var(--gold); --edge-2:var(--gold-2);
   position:relative;
-  width:380px;height:600px;
+  width:380px;height:720px;
   border-radius:24px;
   background:
     linear-gradient(180deg, rgba(255,255,255,0.03), transparent 30%),
@@ -661,7 +661,7 @@ button{font-family:inherit;color:inherit}
   .roster-cell .ovr-mini{font-size:24px;top:10px;right:12px}
 
   /* Player card: scale to fit phone width */
-  .player-card{width:min(340px, 92vw);height:auto;aspect-ratio:380/600}
+  .player-card{width:min(340px, 92vw);height:auto;aspect-ratio:380/720}
   .stage{gap:22px}
 
   /* Detail header stacks */
