@@ -653,77 +653,87 @@ button{font-family:inherit;color:inherit}
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 980px){
+  .app{padding:24px 24px 60px}
   .stage{grid-template-columns:1fr;gap:28px}
   .compare-grid{grid-template-columns:1fr}
   .role-tile{min-height:200px;padding:28px 24px 24px}
   .role-tile h2 .abbr{font-size:108px}
+  /* Score hero: stack at tablet width */
+  .score-hero{flex-direction:column;align-items:stretch;gap:12px}
+  .score-hero-stats{width:100%}
 }
 
 @media (max-width: 720px){
   body{padding:0}
+  .app{padding:12px 12px 56px}
+
+  /* ── Topbar ── */
   .topbar{
-    flex-direction:column;align-items:stretch;gap:12px;
+    flex-direction:column;align-items:stretch;gap:10px;
     padding:12px 14px;border-radius:12px;
   }
-  .topbar > div:first-child{justify-content:flex-start}
+  .topbar > div:last-child{display:flex;justify-content:space-between;align-items:center}
   .nav-tabs{justify-content:center}
-  .nav-tab{flex:1;padding:10px 8px;font-size:10px;min-height:44px}
-  .quarter-pill{align-self:flex-start;font-size:10px;padding:6px 10px}
+  .nav-tab{flex:1;padding:10px 6px;font-size:10px;min-height:44px}
+  .quarter-pill{font-size:10px;padding:6px 10px}
 
-  .hero{margin-top:28px}
+  /* ── Hero + Landing ── */
+  .hero{margin-top:24px}
   .hero h1{font-size:clamp(36px, 10vw, 56px)}
-  .hero p{font-size:14px;padding:0 8px}
+  .hero p{font-size:14px;padding:0 4px}
+  .role-tiles{grid-template-columns:1fr;gap:12px;margin-top:24px}
+  .role-tile{min-height:160px;padding:22px 20px 20px}
+  .role-tile h2 .abbr{font-size:90px}
+  .role-tile .meta{left:20px;right:20px;bottom:18px}
+  .role-tile .meta .count{font-size:26px}
 
-  .role-tiles{grid-template-columns:1fr;gap:14px;margin-top:32px}
-  .role-tile{min-height:180px;padding:24px 22px 22px}
-  .role-tile h2 .abbr{font-size:96px}
-  .role-tile .meta{left:22px;right:22px;bottom:20px}
-  .role-tile .meta .count{font-size:28px}
+  /* ── Section head ── */
+  .section-head{flex-direction:column;align-items:flex-start;gap:12px;margin:16px 0 16px}
+  .section-head h2{font-size:30px}
+  .back{min-height:44px;padding:10px 16px}
 
-  .section-head{flex-direction:column;align-items:flex-start;gap:14px;margin:18px 0 18px}
-  .section-head h2{font-size:32px}
-
-  /* Roster: 2 columns on phones */
-  .roster-grid{
-    grid-template-columns:repeat(2, 1fr);
-    gap:10px;
-  }
-  .roster-cell{padding:14px 12px 12px;min-height:44px}
+  /* ── Roster ── */
+  .roster-grid{grid-template-columns:repeat(2, 1fr);gap:8px}
+  .roster-cell{padding:12px 10px 10px;min-height:44px}
   .roster-cell .photo-mini{width:48px;height:48px;font-size:18px;margin-bottom:10px}
-  .roster-cell .name{font-size:15px}
+  .roster-cell .name{font-size:14px}
   .roster-cell .role-mini{font-size:9px}
-  .roster-cell .ovr-mini{font-size:24px;top:10px;right:12px}
 
-  /* Player card: scale to fit phone width */
+  /* ── Player card (full) ── */
   .player-card{width:min(340px, 92vw);height:auto;aspect-ratio:380/720}
-  .stage{gap:22px}
+  /* Compact card is shorter — override aspect ratio */
+  .player-card.compact{aspect-ratio:380/490}
+  .stage{gap:20px}
 
-  /* Detail header stacks */
-  .detail h2{font-size:34px}
-  .detail .ovr-big{font-size:64px}
-  .detail .ovr-big small{font-size:10px}
-  .bars{grid-template-columns:1fr;gap:12px}
+  /* ── Detail: score hero ── */
+  .score-hero{flex-direction:column;align-items:stretch;gap:12px}
+  .score-hero .score-num{font-size:64px}
+  .score-hero-stats{width:100%}
+  .sh-val{font-size:16px}
 
-  /* Leaderboard: tighter columns on phones */
-  .lb-row{
-    grid-template-columns:36px 1fr 60px;
-    gap:10px;padding:12px 14px;
-  }
-  .lb-row .barbed,
-  .lb-row > div:nth-child(4){display:none}
-  .lb-row .nm{font-size:15px}
-  .lb-row .ov{font-size:24px}
+  /* ── KPI bubbles: 2 columns ── */
+  .kpi-grid{grid-template-columns:repeat(2, 1fr);gap:8px}
+  .kpi-bubble{padding:10px 12px}
+  .kpi-val{font-size:15px}
 
-  /* Compare: stack picks vertically */
-  .compare-grid{gap:18px}
+  /* ── Leaderboard ── */
+  .lb-row{grid-template-columns:36px 1fr 60px;gap:8px;padding:12px 12px}
+  .lb-row .barbed,.lb-row > div:nth-child(4){display:none}
+  .lb-row .nm{font-size:14px}
+  .lb-row .ov{font-size:22px}
+  .lb-section-head{font-size:10px;letter-spacing:0.22em}
+
+  /* ── Compare: compact cards on mobile ── */
+  .compare-grid{gap:16px}
+  .compare-grid .player-card{aspect-ratio:380/490}
+  .compare-grid .player-card .card-stats,
+  .compare-grid .player-card .card-foot{display:none}
   .compare-row{grid-template-columns:1fr 50px 1fr;gap:8px}
   .compare-row .v{font-size:12px}
   .compare-row .lbl{font-size:9px;letter-spacing:0.12em}
-
-  .lb-section-head{font-size:10px;letter-spacing:0.22em}
 }
 
-/* iOS tap target floor */
+/* iOS / touch: disable hover transforms */
 @media (hover: none){
   .role-tile:hover{transform:none}
   .roster-cell:hover{transform:none}
