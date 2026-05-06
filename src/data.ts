@@ -116,13 +116,15 @@ export const VP_WEIGHTS: Record<string, { weight: number; target: number }> = {
 };
 
 export const AM_WEIGHTS: Record<string, { weight: number; target: number }> = {
-  arip:          { weight: 23,   target: 0.075 },
-  dealReviewLM:  { weight: 21.6, target: 0.50 },
-  dealReviewLLM: { weight: 5.4,  target: 0.50 },
-  closedPct:     { weight: 7.5,  target: 0.015 },
-  closedRevAttr: { weight: 7.5,  target: 35000 },
-  closedRevQtr:  { weight: 20,   target: 350000 },
-  pipeline:      { weight: 15,   target: 800000 },
+  appts:         { weight: 5,    target: 180 },
+  icp5:          { weight: 10,   target: 0.25 },
+  arip:          { weight: 38,   target: 0.0375 },
+  dealReviewLM:  { weight: 26.6, target: 0.25 },
+  dealReviewLLM: { weight: 5.4,  target: 0.25 },
+  closedPct:     { weight: 0,    target: 0.0075 },
+  closedRevAttr: { weight: 0,    target: 17500 },
+  closedRevQtr:  { weight: 0,    target: 175000 },
+  pipeline:      { weight: 15,   target: 400000 },
 };
 
 // backward compat alias
