@@ -12,6 +12,9 @@ interface Props {
   ams: Player[];
 }
 
+const VP_DISPLAY = ['appts','contracts','icp5','arip','dealReview','closedPct','closedRevAttr','closedRevQtr','pipeline'];
+const AM_DISPLAY = ['appts','icp5','arip','dealReviewLM','dealReviewLLM','closedPct','closedRevAttr','closedRevQtr','pipeline'];
+
 function pctColor(pct: number): string {
   if (pct >= 100) return '#1B6F5C';
   if (pct >= 75)  return '#1F507E';
@@ -41,6 +44,8 @@ export function Detail({ vps, ams }: Props) {
     );
   }
 
+  const isVP = player.role.includes('Vice');
+  const displayKeys = isVP ? VP_DISPLAY : AM_DISPLAY;
   const [first, ...rest] = player.name.split(' ');
 
   return (
@@ -71,20 +76,33 @@ export function Detail({ vps, ams }: Props) {
           </div>
 
           <div className="kpi-grid">
-            {Object.entries(player.breakdown).map(([k, b]) => {
-              const meta = STAT_META[k] || { label: k, kind: 'pct' as const };
-              const pct = Math.round(b.ratio * 100);
-              const color = pctColor(pct);
+            {displayKeys.map(k => {
+              const meta = STAT_META[k];
+              if (!meta) return null;
+              const value = (player.stats as Record<string, number>)[k];
+              if (value === undefined) return null;
+              const bd = player.breakdown[k];
+              const pct = bd ? Math.round(bd.ratio * 100) : null;
+              const color = pct !== null ? pctColor(pct) : 'var(--text-3)';
+              const label = k === 'appts'
+                ? (isVP ? 'APPTs Attended' : 'APPTs Set')
+                : meta.label;
               return (
                 <div className="kpi-bubble" key={k}>
-                  <div className="kpi-lbl">{meta.label}</div>
-                  <div className="kpi-val">{fmtStat(b.value, meta.kind)}</div>
-                  <div className="kpi-foot">
-                    <div className="kpi-track">
-                      <div className="kpi-fill" style={{ width: `${Math.min(pct, 100)}%`, background: color }} />
+                  <div className="kpi-lbl">{label}</div>
+                  <div className="kpi-val">{fmtStat(value, meta.kind)}</div>
+                  {pct !== null ? (
+                    <div className="kpi-foot">
+                      <div className="kpi-track">
+                        <div className="kpi-fill" style={{ width: `${Math.min(pct, 100)}%`, background: color }} />
+                      </div>
+                      <span className="kpi-pct" style={{ color }}>{pct}%</span>
                     </div>
-                    <span className="kpi-pct" style={{ color }}>{pct}%</span>
-                  </div>
+                  ) : (
+                    <div className="kpi-foot">
+                      <span style={{ fontSize: 9, letterSpacing: '0.14em', color: 'var(--text-3)', fontFamily: 'var(--font-ui)', textTransform: 'uppercase' }}>tracking</span>
+                    </div>
+                  )}
                 </div>
               );
             })}
