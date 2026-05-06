@@ -106,29 +106,6 @@ export const STATIC_AMS: Player[] = [
   },
 ];
 
-export const VP_WEIGHTS: Record<string, { weight: number; target: number }> = {
-  arip:          { weight: 30,   target: 0.10 },
-  dealReview:    { weight: 30,   target: 0.50 },
-  closedPct:     { weight: 5,    target: 0.015 },
-  closedRevAttr: { weight: 5,    target: 400000 },
-  closedRevQtr:  { weight: 25,   target: 600000 },
-  pipeline:      { weight: 5,    target: 1500000 },
-};
-
-export const AM_WEIGHTS: Record<string, { weight: number; target: number }> = {
-  appts:         { weight: 5,    target: 180 },
-  icp5:          { weight: 10,   target: 0.25 },
-  arip:          { weight: 38,   target: 0.0375 },
-  dealReviewLM:  { weight: 26.6, target: 0.25 },
-  dealReviewLLM: { weight: 5.4,  target: 0.25 },
-  closedPct:     { weight: 0,    target: 0.0075 },
-  closedRevAttr: { weight: 0,    target: 17500 },
-  closedRevQtr:  { weight: 0,    target: 175000 },
-  pipeline:      { weight: 15,   target: 400000 },
-};
-
-// backward compat alias
-export const WEIGHTS = AM_WEIGHTS;
 
 export const STAT_META: Record<string, StatMeta> = {
   appts:         { label: 'APPTs Attended',            kind: 'int',   icon: 'calendar' },

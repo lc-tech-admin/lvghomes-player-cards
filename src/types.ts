@@ -12,11 +12,14 @@ export interface Stats {
   pipeline?: number;
 }
 
+export type WeightMap = Record<string, { weight: number; target: number }>;
+
 export interface Player {
   id: string;
   name: string;
   role: 'Vice President' | 'Acquisition Manager';
   stats: Stats;
+  weights?: WeightMap;
   headshot?: string;
 }
 

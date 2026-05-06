@@ -1,13 +1,4 @@
-import { VP_WEIGHTS, AM_WEIGHTS } from './data';
-import { getLiveVPWeights, getLiveAMWeights } from './live-weights';
 import type { Player, PlayerWithOverall, Tier, BreakdownEntry } from './types';
-
-function getWeights(player: Player) {
-  if (player.role === 'Vice President') {
-    return getLiveVPWeights() || VP_WEIGHTS;
-  }
-  return getLiveAMWeights() || AM_WEIGHTS;
-}
 
 function ratio(value: number, target: number): number {
   if (!target || target <= 0) return 0;
@@ -15,15 +6,20 @@ function ratio(value: number, target: number): number {
 }
 
 export function compute(player: Player): { overall: number; breakdown: Record<string, BreakdownEntry> } {
-  const WEIGHTS = getWeights(player);
-  const keys = (Object.keys(player.stats) as (keyof typeof player.stats)[]).filter(k => WEIGHTS[k]);
+  const WEIGHTS = player.weights;
+  const breakdown: Record<string, BreakdownEntry> = {};
+
+  if (!WEIGHTS || Object.keys(WEIGHTS).length === 0) {
+    return { overall: 0, breakdown };
+  }
+
+  const keys = (Object.keys(player.stats) as string[]).filter(k => WEIGHTS[k]);
   let totalWeight = 0;
   let earned = 0;
-  const breakdown: Record<string, BreakdownEntry> = {};
 
   keys.forEach(k => {
     const w = WEIGHTS[k];
-    const value = player.stats[k] ?? 0;
+    const value = (player.stats as Record<string, number>)[k] ?? 0;
     const r = ratio(value, w.target);
     totalWeight += w.weight;
     earned += r * w.weight;
