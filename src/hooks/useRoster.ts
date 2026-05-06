@@ -81,5 +81,30 @@ export function useRoster() {
     fetchRoster();
   }, []);
 
-  return { vps: data.vps, ams: data.ams, quarter: data.quarter, loading, error };
+  function refresh() {
+    try { localStorage.removeItem(CACHE_KEY); } catch {}
+    setLoading(true);
+    setError(null);
+    const SHEET_URL: string | undefined = import.meta.env.VITE_SHEET_URL;
+    if (!SHEET_URL) { setLoading(false); return; }
+    fetch(SHEET_URL, { cache: 'no-store' })
+      .then(r => r.json())
+      .then((json: { vps?: Record<string, unknown>[]; ams?: Record<string, unknown>[]; quarter?: string; updatedAt?: string }) => {
+        if (!Array.isArray(json.vps) && !Array.isArray(json.ams)) throw new Error('bad format');
+        const normalized: RosterData = {
+          updatedAt: json.updatedAt || new Date().toISOString(),
+          quarter: json.quarter || 'Q1 2026',
+          vps: (json.vps || []).map(p => normalizePlayer(p, 'vp')),
+          ams: (json.ams || []).map(p => normalizePlayer(p, 'am')),
+        };
+        if (normalized.vps.length === 0 && normalized.ams.length === 0) throw new Error('empty');
+        setData(normalized);
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ data: normalized, timestamp: Date.now() }));
+        setError(null);
+      })
+      .catch((err: unknown) => setError(err instanceof Error ? err.message : 'Refresh failed'))
+      .finally(() => setLoading(false));
+  }
+
+  return { vps: data.vps, ams: data.ams, quarter: data.quarter, loading, error, refresh };
 }

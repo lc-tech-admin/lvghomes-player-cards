@@ -7,7 +7,7 @@ function getWeights(player: Player) {
 
 function ratio(value: number, target: number): number {
   if (!target || target <= 0) return 0;
-  return Math.max(0, Math.min(value / target, 1.25));
+  return Math.max(0, Math.min(value / target, 1.0));
 }
 
 export function compute(player: Player): { overall: number; breakdown: Record<string, BreakdownEntry> } {
@@ -27,8 +27,7 @@ export function compute(player: Player): { overall: number; breakdown: Record<st
   });
 
   if (totalWeight === 0) return { overall: 0, breakdown };
-  const normalized = (earned / totalWeight) * 99;
-  const overall = Math.round(Math.min(99, normalized * 1.05));
+  const overall = Math.round(Math.min(100, (earned / totalWeight) * 100));
   return { overall: Math.max(1, overall), breakdown };
 }
 
