@@ -1,8 +1,12 @@
 import { VP_WEIGHTS, AM_WEIGHTS } from './data';
+import { getLiveVPWeights, getLiveAMWeights } from './live-weights';
 import type { Player, PlayerWithOverall, Tier, BreakdownEntry } from './types';
 
 function getWeights(player: Player) {
-  return player.role === 'Vice President' ? VP_WEIGHTS : AM_WEIGHTS;
+  if (player.role === 'Vice President') {
+    return getLiveVPWeights() || VP_WEIGHTS;
+  }
+  return getLiveAMWeights() || AM_WEIGHTS;
 }
 
 function ratio(value: number, target: number): number {
