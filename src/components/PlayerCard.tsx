@@ -54,6 +54,7 @@ export function PlayerCard({ player, animationsOn = true }: Props) {
           shape="rounded"
           radius="14"
           placeholder={`Drop ${player.name.split(' ')[0]}'s headshot`}
+          src={`${import.meta.env.BASE_URL}headshots/${player.id}.jpg`}
         />
         <button
           className="photo-clear"

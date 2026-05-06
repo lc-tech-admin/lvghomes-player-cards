@@ -1,5 +1,6 @@
 interface ImportMetaEnv {
   readonly VITE_SHEET_URL?: string;
+  readonly BASE_URL: string;
 }
 
 interface ImportMeta {
